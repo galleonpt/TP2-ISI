@@ -2,8 +2,10 @@ import { Router } from 'express';
 const routes = Router();
 
 import UserController from './Controllers/UserController'
+import AuthenticationController from './Controllers/AuthenticationController'
 
 const userController = new UserController();
+const authenticationController= new AuthenticationController();
 
 /**
  * @swagger
@@ -19,6 +21,8 @@ routes.get('/teste', (request, response)=>{
 })
 
 routes.post('/users', userController.create)
+
+routes.get('/authenticate', authenticationController.login)
 
 
 export default routes;

@@ -8,7 +8,7 @@ export default class UserController{
 
       const hashedPW = await AuthService.hashPW(password)
       password=hashedPW
-      
+
       const alreadyExists =  await db('users').where('username', username).first()
       
       if (alreadyExists)
@@ -25,6 +25,8 @@ export default class UserController{
       console.log(error)
     }
   }
+
+  
 }
 
 // index,
