@@ -24,9 +24,7 @@ export default class UserController{
     } catch (error) {
       console.log(error)
     }
-  }
-
-  
+  }  
 }
 
 // index,

@@ -24,8 +24,9 @@ export default class AuthenticationController{
         });
       }
 
-  
-      return response.status(200).send('logged in');
+      const token = AuthService.generateToken(user);
+
+      return response.header('Authentication', token).send(token);
     }catch(error){
       console.log(error)
     }
