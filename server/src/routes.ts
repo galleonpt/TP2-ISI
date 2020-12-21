@@ -18,7 +18,7 @@ routes.get('/teste', (request, response)=>{
   return response.send('ola mundo')
 })
 
-routes.get('/users', userController.create)
+routes.post('/users', userController.create)
 
 
 export default routes;
