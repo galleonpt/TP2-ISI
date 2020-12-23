@@ -35,4 +35,6 @@ export default class ReposController{
         return response.status(404).json(error.message) 
       })
   }
+
+  //Normalizar os dados dos repositorios
 }
