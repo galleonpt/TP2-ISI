@@ -37,7 +37,7 @@ routes.get('/login', authenticationController.login)
 
 
 //pesquissar repositorios de um utilizador qualquer
-routes.get('/private/user-repos', reposController.show)
+routes.get('/private/user-repos',AuthService.verifyToken, reposController.show)
 
 //quando faz login mostrar logo os repos da pessoa que logou
 routes.get('/private/me',AuthService.verifyToken, reposController.me)

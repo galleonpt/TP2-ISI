@@ -3,7 +3,6 @@ import axios from 'axios';
 import AuthService from '../services/AuthService'
 import db from '../database/connection'
 
-
 export default class ReposController{
 
   public async show(request:Request, response:Response){
@@ -35,6 +34,4 @@ export default class ReposController{
         return response.status(404).json(error.message) 
       })
   }
-
-  //Normalizar os dados dos repositorios
 }
