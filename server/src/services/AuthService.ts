@@ -24,12 +24,11 @@ export default class AuthService{
     })
   }
 
-  private static decodeToken(token:string){
+  public static decodeToken(token:string){
     return jwt.verify(token, <string>process.env.TOKEN)
   }
 
   public static verifyToken(request:Request, response:Response, next:NextFunction){
-    // const token = request.get('Authentication')
     const token = request.header('Authentication')
     
     if(!token)

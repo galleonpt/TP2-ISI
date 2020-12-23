@@ -5,28 +5,19 @@ const routes = Router();
 import UserController from './Controllers/UserController'
 import AuthenticationController from './Controllers/AuthenticationController'
 import AuthService from './services/AuthService'
+import ReposController from './Controllers/ReposController'
+
 
 const userController = new UserController();
 const authenticationController= new AuthenticationController();
+const reposController = new ReposController();
+
 
 /**
  * @swagger
- * /teste:
+ * /users:
  *  get:
- *    description: asdkasd
- *    responses:
- *      '200':
- *        description: akojshbdoasnd 
- */
-routes.get('/teste', (request, response)=>{
-  return response.send('ola mundo')
-})
-
-/**
- * @swagger
- * /teste:
- *  get:
- *    description: asdkasd
+ *    description: create an user
  *    responses:
  *      '200':
  *        description: akojshbdoasnd 
@@ -35,25 +26,20 @@ routes.post('/users', userController.create)
 
 /**
  * @swagger
- * /teste:
+ * /login:
  *  get:
- *    description: asdkasd
+ *    description: Generate token to login in the system
  *    responses:
  *      '200':
- *        description: akojshbdoasnd 
+ *        description:
  */
-routes.get('/authenticate', authenticationController.login)
+routes.get('/login', authenticationController.login)
 
-/**
- * @swagger
- * /teste:
- *  get:
- *    description: asdkasd
- *    responses:
- *      '200':
- *        description: akojshbdoasnd 
- */
-routes.get('/private',AuthService.verifyToken, (request, response)=>{response.send('passou aqui')})
 
+//pesquissar repositorios de um utilizador qualquer
+routes.get('/private/user-repos', reposController.show)
+
+//quando faz login mostrar logo os repos da pessoa que logou
+routes.get('/private/me',AuthService.verifyToken, reposController.me)
 
 export default routes;
