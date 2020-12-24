@@ -1,0 +1,38 @@
+# components:
+#   securitySchemes:
+#     bearerAuth: # arbitrary name for the security scheme
+#       type: http
+#       scheme: bearer
+#       bearerFormat: JWT # optional, arbitrary value for documentation purposes
+#       in: header
+# # 2) Apply the security globally to all operations
+# security:
+#   - bearerAuth: [] # use the same name as above
+openapi: 3.0.0
+# components:
+#   securitySchemes:
+#     JWT:
+#       type: http
+#       scheme: bearer
+#       bearerFormat: JWT # optional, arbitrary value for documentation purposes
+#       in: header
+
+# securityDefinitions:
+#   JWT:
+#     type: http
+#     in: header
+#     name: access_token
+
+# security:
+#   - JWT: [] # use the same name as above
+
+# schemes:
+#   - http
+#   - https
+# securityDefinitions:
+#   apikey:
+#     type: http
+#     name: api_key
+#     in: header
+#     description: |
+#       Bearer xxxxxx.yyyyyyy.zzzzzz

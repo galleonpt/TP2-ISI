@@ -24,7 +24,19 @@ const reposController = new ReposController();
  *         type: string
  *       password:
  *         type: string
- *       github_name:
+ */
+
+ /**
+ * @swagger
+ * definitions:
+ *   Login:
+ *     required:
+ *       - username
+ *       - password
+ *     properties:
+ *       username:
+ *         type: string
+ *       password:
  *         type: string
  */
 
@@ -49,19 +61,46 @@ routes.post('/users', userController.create)
 /**
  * @swagger
  * /login:
+ *   post:
+ *     description: Use to return all customers
+ *     parameters:
+ *       - name: customer
+ *         in: body
+ *         description: Name of our customer
+ *         required: true
+ *         schema:
+ *           $ref: '#/definitions/Login' 
+ *     responses:
+ *         '200':
+ *           description: Generate Token
+ */
+routes.post('/login', authenticationController.login)
+
+
+/**
+ * @swagger
+ * /private/user-repos:
  *  get:
  *    description: Generate token to login in the system
+ *    security:
+ *      - Bearer: []
  *    responses:
  *      '200':
  *        description:
  */
-routes.get('/login', authenticationController.login)
-
-
-//pesquissar repositorios de um utilizador qualquer
 routes.get('/private/user-repos',AuthService.verifyToken, reposController.show)
 
-//quando faz login mostrar logo os repos da pessoa que logou
+/**
+ * @swagger
+ * /private/me:
+ *  get:
+ *    description: Generate token to login in the system
+ *    security:
+ *      - Bearer: []
+ *    responses:
+ *      '200':
+ *        description:funciona
+ */
 routes.get('/private/me',AuthService.verifyToken, reposController.me)
 
 export default routes;
