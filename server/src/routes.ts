@@ -44,17 +44,19 @@ const reposController = new ReposController();
  * @swagger
  * /users:
  *   post:
- *     description: Use to return all customers
+ *     description: Criar um utilizador
  *     parameters:
- *       - name: customer
+ *       - name: User
  *         in: body
- *         description: Name of our customer
+ *         description: Dados do utilizador
  *         required: true
  *         schema:
  *           $ref: '#/definitions/User' 
  *     responses:
  *         '201':
- *           description: Successfully created user
+ *           description: Utilizador criado com sucesso
+ *         '400'
+ *           description: Utilizador já existente
  */
 routes.post('/users', userController.create)
 
@@ -62,17 +64,19 @@ routes.post('/users', userController.create)
  * @swagger
  * /login:
  *   post:
- *     description: Use to return all customers
+ *     description: Gerar o token para aceder ao sistema
  *     parameters:
- *       - name: customer
+ *       - name: User
  *         in: body
- *         description: Name of our customer
+ *         description: Dados do utilizador
  *         required: true
  *         schema:
  *           $ref: '#/definitions/Login' 
  *     responses:
  *         '200':
- *           description: Generate Token
+ *           description: Token criado com sucesso
+ *         '401':
+ *           description: Password incorreta ou utilizador não encontrado
  */
 routes.post('/login', authenticationController.login)
 
