@@ -1,12 +1,11 @@
 import { Router } from 'express';
-const routes = Router();
 
+const routes = Router();
 
 import UserController from './Controllers/UserController'
 import AuthenticationController from './Controllers/AuthenticationController'
 import AuthService from './services/AuthService'
 import ReposController from './Controllers/ReposController'
-
 
 const userController = new UserController();
 const authenticationController= new AuthenticationController();
@@ -15,12 +14,35 @@ const reposController = new ReposController();
 
 /**
  * @swagger
+ * definitions:
+ *   User:
+ *     required:
+ *       - username
+ *       - password
+ *     properties:
+ *       username:
+ *         type: string
+ *       password:
+ *         type: string
+ *       github_name:
+ *         type: string
+ */
+
+/**
+ * @swagger
  * /users:
- *  get:
- *    description: create an user
- *    responses:
- *      '200':
- *        description: akojshbdoasnd 
+ *   post:
+ *     description: Use to return all customers
+ *     parameters:
+ *       - name: customer
+ *         in: body
+ *         description: Name of our customer
+ *         required: true
+ *         schema:
+ *           $ref: '#/definitions/User' 
+ *     responses:
+ *         '201':
+ *           description: Successfully created user
  */
 routes.post('/users', userController.create)
 

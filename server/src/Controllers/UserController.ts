@@ -26,9 +26,3 @@ export default class UserController{
     }
   }  
 }
-
-// index,
-// show,
-// update,
-// delete,
-// create

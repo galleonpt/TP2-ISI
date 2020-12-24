@@ -1,0 +1,29 @@
+{
+  "components": {
+    "schemas": {
+      "Event": {
+        "required": ["dateOfEnd", "dateOfStart", "eventId", "eventName"],
+        "type": "object",
+        "properties": {
+          "eventId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "eventName": {
+            "maxLength": 30,
+            "type": "string"
+          },
+          "dateOfStart": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "dateOfEnd": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}
