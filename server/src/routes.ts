@@ -11,6 +11,14 @@ const userController = new UserController();
 const authenticationController= new AuthenticationController();
 const reposController = new ReposController();
 
+/**
+ * @swagger
+ * tags:
+ *   name: Users
+ *   description: Login e criação de conta
+ *   name: Repositórios
+ *   description: Dados dos repositórios dos utilizadores
+ */
 
 /**
  * @swagger
@@ -19,10 +27,13 @@ const reposController = new ReposController();
  *     required:
  *       - username
  *       - password
+ *       - github_name
  *     properties:
  *       username:
  *         type: string
  *       password:
+ *         type: string
+ *       github_name:
  *         type: string
  */
 
@@ -40,11 +51,23 @@ const reposController = new ReposController();
  *         type: string
  */
 
+ /**
+ * @swagger
+ * definitions:
+ *   UserRepos:
+ *     required:
+ *       - username
+ *     properties:
+ *       username:
+ *         type: string
+ */
+
 /**
  * @swagger
  * /users:
  *   post:
  *     description: Criar um utilizador
+ *     tags: [Users]
  *     parameters:
  *       - name: User
  *         in: body
@@ -53,10 +76,10 @@ const reposController = new ReposController();
  *         schema:
  *           $ref: '#/definitions/User' 
  *     responses:
- *         '201':
- *           description: Utilizador criado com sucesso
- *         '400'
- *           description: Utilizador já existente
+ *       '201':
+ *         description: Utilizador criado com sucesso
+ *       '400':
+ *         description: Utilizador já existente
  */
 routes.post('/users', userController.create)
 
@@ -65,6 +88,7 @@ routes.post('/users', userController.create)
  * /login:
  *   post:
  *     description: Gerar o token para aceder ao sistema
+ *     tags: [Users]
  *     parameters:
  *       - name: User
  *         in: body
@@ -73,10 +97,10 @@ routes.post('/users', userController.create)
  *         schema:
  *           $ref: '#/definitions/Login' 
  *     responses:
- *         '200':
- *           description: Token criado com sucesso
- *         '401':
- *           description: Password incorreta ou utilizador não encontrado
+ *       '200':
+ *         description: Token criado com sucesso
+ *       '401':
+ *         description: Password incorreta ou utilizador não encontrado
  */
 routes.post('/login', authenticationController.login)
 
@@ -85,12 +109,22 @@ routes.post('/login', authenticationController.login)
  * @swagger
  * /private/user-repos:
  *  get:
- *    description: Generate token to login in the system
+ *    description: Obter repositórios de um utilizador
+ *    tags: [Repositórios]
+ *    parameters:
+ *      - name: Username
+ *        in: body
+ *        description: Username do github do utilizador para listar os repositórios
+ *        required: true
+ *        schema:
+ *          $ref: '#/definitions/UserRepos'
  *    security:
  *      - Bearer: []
  *    responses:
  *      '200':
- *        description:
+ *        description: Lista com os repositórios
+ *      '404':
+ *        description: Utilizador não encontrado
  */
 routes.get('/private/user-repos',AuthService.verifyToken, reposController.show)
 
@@ -98,12 +132,15 @@ routes.get('/private/user-repos',AuthService.verifyToken, reposController.show)
  * @swagger
  * /private/me:
  *  get:
- *    description: Generate token to login in the system
+ *    description: Repositórios do user logado na aplicação
+ *    tags: [Repositórios]
  *    security:
  *      - Bearer: []
  *    responses:
  *      '200':
- *        description:funciona
+ *        description: Lista dos repositórios do user logado.
+ *      '404':
+ *        description: Utilizador não encontrado.
  */
 routes.get('/private/me',AuthService.verifyToken, reposController.me)
 
