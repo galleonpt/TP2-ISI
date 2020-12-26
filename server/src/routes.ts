@@ -14,10 +14,10 @@ const reposController = new ReposController();
 /**
  * @swagger
  * tags:
- *   name: Users
- *   description: Login e criação de conta
- *   name: Repositórios
- *   description: Dados dos repositórios dos utilizadores
+ *   - name: Users
+ *     description: Login e criação de conta
+ *   - name: Repositórios
+ *     description: Dados dos repositórios dos utilizadores
  */
 
 /**
