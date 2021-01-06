@@ -1,11 +1,14 @@
 import React from 'react';
-import './styles.css'
 
 function Footer(){
   return (
-    <footer>
-      <p><b>Trabalho desenvolvido por:</b> José Luís Rodrigues, 17616</p>
-    </footer>
+    <footer className="footer fixed-bottom">
+
+    <div className="text-center p-3">
+      <b>Trabalho desenvolvido por:</b> José Luís Rodrigues, 17616.
+    </div>
+
+  </footer>
   )
 }
 
