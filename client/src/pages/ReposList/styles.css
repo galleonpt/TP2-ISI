@@ -1,20 +1,51 @@
 body{
   width: 100vw;
   height: 100vh;
+  overflow-x: hidden;
 }
-
-
 
 .username{
   margin-top: 30px;
+}
+
+.followers-number{
+  font-size: 16px;
 }
 
 .list-group-item{
   display: flex;
   align-items: center;
   justify-content:space-between;
+  /* background-color:yellow; */
+}
+
+.info a{
+  font-size:20px;
+}
+
+.info p{
+  margin-top: 8px;
+  box-sizing: border-box;
+  max-width:750px;
+  border:1px red solid;
+}
+
+
+.stars-info{
+  margin-bottom: 4px;
+}
+
+.rating svg{
+  margin-left: 4px;
 }
 
 #icon2{ 
   transform:rotate(-90deg)
+}
+
+.footer-wrapper{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh; 
 }
