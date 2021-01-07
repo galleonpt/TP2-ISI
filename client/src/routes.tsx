@@ -7,8 +7,9 @@ import CreateAcc from './pages/CreateAcc';
 const Routes = () => {
   return (
     <BrowserRouter>
-      {/* <Route component={Login} path="/" exact /> */}
-      <Route component={CreateAcc} path="/" exact />
+      <Route component={Login} path="/" exact/>
+      <Route component={CreateAcc} path="/newuser"/>
+      <Route component={CreateAcc} path="/private/info"/>
     </BrowserRouter>
   );
 };
