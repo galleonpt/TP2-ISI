@@ -1,4 +1,4 @@
-import React, {useState, useEffect, ChangeEvent, FormEvent} from 'react';
+import React, {useState, ChangeEvent, FormEvent} from 'react';
 import {Link, useHistory} from 'react-router-dom'
 import './styles.css'
 
@@ -8,8 +8,6 @@ import api from '../../services/api'
 function Login(){
   const history = useHistory();
 
-  const [username, setUsername]= useState<string>('')
-  const [password, setPW]= useState<string>('')
 
   const [formData, setFormData] = useState({
     username: "",
@@ -18,15 +16,16 @@ function Login(){
   
   
   function handleInputChange(event: ChangeEvent<HTMLInputElement>) {
-    const { name, value } = event.target; //value = conteudo do input
+    const { name, value } = event.target; //value = conteúdo do input
 
     setFormData({ ...formData, [name]: value });
   }
 
   async function handleSubmit(event:FormEvent) {
     event.preventDefault();
-
-    const {username, password}= formData;
+    localStorage.clear();
+    
+    const {username, password} = formData;
 
     if(!username){
       alert('Username invalido!')
@@ -51,7 +50,6 @@ function Login(){
       const token= response.data;
 
       localStorage.setItem('authorization', token);
-      console.log(token)
 
       history.push('/private/info');
     }

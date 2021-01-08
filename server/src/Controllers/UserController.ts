@@ -5,8 +5,8 @@ export default class UserController{
   async create(request:Request, response:Response){
     try {
       let { username, password, github_name } = request.body
-
-      const hashedPW = await AuthService.hashPW(password)
+      
+      const hashedPW = await AuthService.hashPW(password, 10)
       password=hashedPW
 
       const alreadyExists =  await db('users').where('username', username).first()

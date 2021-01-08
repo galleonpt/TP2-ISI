@@ -9,7 +9,7 @@ const Routes = () => {
     <BrowserRouter>
       <Route component={Login} path="/" exact/>
       <Route component={CreateAcc} path="/newuser"/>
-      <Route component={CreateAcc} path="/private/info"/>
+      <Route component={RepoList} path="/private/info"/>
     </BrowserRouter>
   );
 };
