@@ -1,12 +1,12 @@
 import React, {useState, useEffect, ChangeEvent, FormEvent} from 'react';
-import {Link} from 'react-router-dom'
+import {Link, useHistory} from 'react-router-dom'
 import './styles.css'
 
 import api from '../../services/api'
 
 
 function Login(){
-
+  const history = useHistory();
 
   const [username, setUsername]= useState<string>('')
   const [password, setPW]= useState<string>('')
@@ -42,14 +42,18 @@ function Login(){
 
     const response = await api.post('/login', data);
 
-    if(response.data.code===401)
-     { alert(`${response.data.message}`);}
+    if(response.data.code===401){ 
+      alert(`${response.data.message}`);
+      return;
+    }
 
     if(response.status){
       const token= response.data;
 
-      /* Colocar o token no header da requisicao */
+      localStorage.setItem('authorization', token);
       console.log(token)
+
+      history.push('/private/info');
     }
   }
 
