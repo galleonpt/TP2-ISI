@@ -26,7 +26,7 @@ export default class AuthenticationController{
 
       const token = AuthService.generateToken(user);
 
-      return response.header('Authentication', token).send(token);
+      return response.header('authentication', token).send(token);
     }catch(error){
       console.log(error)
     }

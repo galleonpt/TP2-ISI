@@ -29,7 +29,7 @@ export default class AuthService{
   }
 
   public static verifyToken(request:Request, response:Response, next:NextFunction){
-    const token = request.header('Authentication')
+    const token = request.header('authentication')
     
     if(!token)
       return response.status(401).json({message:"Access Denied!"})

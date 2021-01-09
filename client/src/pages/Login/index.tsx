@@ -49,7 +49,7 @@ function Login(){
     if(response.status){
       const token= response.data;
 
-      localStorage.setItem('authorization', token);
+      localStorage.setItem('authentication', token);
 
       history.push('/private/info');
     }
