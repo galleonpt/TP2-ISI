@@ -111,7 +111,7 @@ function ReposList(){
         
         <div>
         {
-          repos.length>0 && <div>
+          repos.length > 0 && <div>
             <h2 className='username' > {repos[0].owner.login}
               <span className='followers-number'>({repos.length})</span>
             </h2>
