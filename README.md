@@ -20,7 +20,7 @@ Clone o repositório.
 **Instalando dependências do projeto backend:**
 
 ```bash
-> cd happy/backend
+> cd server
 > npm install
 ```
 
@@ -34,7 +34,7 @@ Para executar o projeto **backend** é necessário criar a base de dados com tod
 **Instalando dependências do projeto web:**
 
 ```bash
-> cd happy/web
+> cd client
 > npm run install
 ```
 
